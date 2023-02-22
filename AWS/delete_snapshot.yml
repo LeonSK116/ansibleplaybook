@@ -1,0 +1,8 @@
+ name: Delete snapshot
+  ec2_snapshot:
+    state: absent
+    ec2_url: "{{ ec2_url }}"
+    aws_access_key: "{{ aws_access_key }}"
+    aws_secret_key: "{{ aws_secret_key }}"
+    snapshot_id: "{{ snapshot_id }}"
+    region: "{{ region }}"

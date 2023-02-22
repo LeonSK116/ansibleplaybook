@@ -1,0 +1,11 @@
+name: Create a snapshot of an EBS volume
+  ec2_snapshot:
+    region: "{{ region }}"
+    aws_access_key: "{{ aws_access_key }}"
+    aws_secret_key: "{{ aws_secret_key }}"
+    instance_id: "{{ instance_id }}"
+    description: "Daily backup"
+  register: ebs_snapshot
+
+- name: Wait for the snapshot to be completed
+  local_action: wait_for state=completed timeout=600 poll=30 interval=10 resource={{ ebs_snapshot }}
