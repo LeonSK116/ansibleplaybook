@@ -1,4 +1,5 @@
-name: Create a snapshot of an EBS volume
+---
+- name: Create a snapshot of an EBS volume
   ec2_snapshot:
     region: "{{ region }}"
     aws_access_key: "{{ aws_access_key }}"
