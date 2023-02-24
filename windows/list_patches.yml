@@ -1,6 +1,6 @@
 ---
 - name: Check for updates
-  hosts: windows
+  hosts: "{{ windows }}"
   tasks:
   - name: Search-only, return list of found updates (if any), log to C:\ansible_wu.tx
     ansible.windows.win_updates:
