@@ -17,7 +17,7 @@
       dest: /tmp/win_patches.log
       flat: true
   - name: email to admin
-    community.general.mail:
+    mail:
       host: smtp-relay.sendinblue.com
       port: 587
       username: "{{outlook_user}}"
