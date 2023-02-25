@@ -3,11 +3,8 @@
   hosts: all
   tasks:
   - name: install patches
-    ansible.windows.win_updates
-      category_names:
-      - SecurityUpdates
-      - CriticalUpdates
-      - UpdateRollups
+    ansible.windows.win_updates:
+      category_names: "{{patch_category}}"
       state: installed
       reboot: yes
       reboot_timeout: 3600
