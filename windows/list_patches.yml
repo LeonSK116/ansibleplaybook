@@ -1,6 +1,7 @@
 ---
-- name: Check for updates
+- name: Check for updates and email the patches list
   hosts: all
+  gather_facts: False
   tasks:
   - name: Search-only, return list of found updates (if any), log to C:\ansible_wu.txt
     ansible.windows.win_updates:
@@ -10,3 +11,21 @@
       - UpdateRollups
       state: searched
       log_path: C:\ansible_wu.txt
+  - name: Copy patch list
+    ansible.builtin.fetch:
+      src: C:\ansible_wu.txt
+      dest: /tmp/win_patches.log
+      flat: true
+  - name: email to admin
+    community.general.mail:
+      host: smtp-relay.sendinblue.com
+      port: 587
+      username: "{{outlook_user}}"
+      password: "{{outlook_pass}}"
+      to: rasengan116@outlook.com
+      subject: Windows patch report
+      body: "The list of required Windows Update for the Windows VMs can be found in the attached file"
+      attach:
+      - /tmp/win_patches.log
+    delegate_to: localhost
+    
