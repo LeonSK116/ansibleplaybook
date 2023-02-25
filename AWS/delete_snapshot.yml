@@ -1,6 +1,6 @@
 --- 
 - name : find the snapshot based on tag called demo and delete it
-  hosts: aws
+  hosts: localhost
   environment:
     AWS_ACCESS_KEY: "{{a_key}}"
     AWS_SECRET_KEY: "{{s_key}}"
