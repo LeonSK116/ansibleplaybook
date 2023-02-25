@@ -4,7 +4,10 @@
   tasks:
   - name: install patches
     ansible.windows.win_updates
-      category_names: "{{patch_category}}"
+      category_names:
+      - SecurityUpdates
+      - CriticalUpdates
+      - UpdateRollups
       state: installed
       reboot: yes
       reboot_timeout: 3600
