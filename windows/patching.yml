@@ -1,13 +1,13 @@
 ---
 - name: Install patches on windows
- hosts: all
- tasks:
- - name: install patches
-   win_updates:
-     category_names: "{{patch_category}}"
-     state: present
+  hosts: all
+  tasks:
+  - name: install patches
+    win_updates:
+      category_names: "{{patch_category}}"
+      state: present
 # Optionally, you can increase the reboot_timeout to survive long updates during reboot
- - name: Ensure we wait long enough for the updates to be applied during reboot
-   ansible.windows.win_updates:
-     reboot: yes
-     reboot_timeout: 3600
+  - name: Ensure we wait long enough for the updates to be applied during reboot
+    ansible.windows.win_updates:
+      reboot: yes
+      reboot_timeout: 3600
