@@ -22,7 +22,7 @@
       port: 587
       username: "{{outlook_user}}"
       password: "{{outlook_pass}}"
-      to: rasengan116@outlook.com
+      to: "{{email}}"
       subject: Windows patch report
       body: "The list of required Windows Update for the Windows VMs can be found in the attached file"
       attach:

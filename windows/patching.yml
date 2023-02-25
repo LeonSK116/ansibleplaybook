@@ -4,7 +4,7 @@
  tasks:
  - name: install patches
    win_updates:
-     category_names: "{{category_names}}"
+     category_names: "{{patch_category}}"
      state: present
 # Optionally, you can increase the reboot_timeout to survive long updates during reboot
  - name: Ensure we wait long enough for the updates to be applied during reboot
