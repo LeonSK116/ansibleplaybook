@@ -1,12 +1,25 @@
 ---
-- name: Create a snapshot of an EBS volume
-  ec2_snapshot:
-    region: "{{ region }}"
-    aws_access_key: "{{ aws_access_key }}"
-    aws_secret_key: "{{ aws_secret_key }}"
-    instance_id: "{{ instance_id }}"
-    description: "Daily backup"
-  register: ebs_snapshot
-
-- name: Wait for the snapshot to be completed
-  local_action: wait_for state=completed timeout=600 poll=30 interval=10 resource={{ ebs_snapshot }}
+- name: find ec2 id and take a snapshot of it with tag demo
+  hosts: aws
+  environment:
+    AWS_ACCESS_KEY: "{{a_key}}"
+    AWS_SECRET_KEY: "{{s_key}}"
+    AWS_REGION: "{{region_az}}"
+  tasks:
+  - name: find ec2 id
+    amazon.aws.ec2_instance_info:
+      filters:
+        "tag:Name": windows2019
+    register: ec2_info
+  - name: show the ID
+    debug:
+      msg: "{{ec2_info.instances[0].instance_id}}"
+  - name: take snapshot
+    amazon.aws.ec2_snapshot:
+      instance_id: "{{ec2_info.instances[0].instance_id}}"
+      device_name: /dev/sda1
+      description: snapshot before patching from Ansible
+      snapshot_tags:
+        env: demo
+#  - name: Wait for the snapshot to be completed
+#    local_action: wait_for state=completed timeout=600 poll=30 interval=10 resource={{ ebs_snapshot }}

@@ -1,8 +1,20 @@
- name: Delete snapshot
-  ec2_snapshot:
-    state: absent
-    ec2_url: "{{ ec2_url }}"
-    aws_access_key: "{{ aws_access_key }}"
-    aws_secret_key: "{{ aws_secret_key }}"
-    snapshot_id: "{{ snapshot_id }}"
-    region: "{{ region }}"
+--- 
+- name : find the snapshot based on tag called demo and delete it
+  hosts: aws
+  environment:
+    AWS_ACCESS_KEY: "{{a_key}}"
+    AWS_SECRET_KEY: "{{s_key}}"
+    AWS_REGION: "{{region_az}}"
+  tasks:
+  - name: find snapshot
+    amazon.aws.ec2_snapshot_info:
+      filters:
+        "tag:env": demo
+    register: snap_info
+  - name: show info
+    debug:
+      msg: "{{snap_info.snapshots[0].snapshot_id}}"
+  - name: delete snapshot
+    amazon.aws.ec2_snapshot:
+      snapshot_id: "{{snap_info.snapshots[0].snapshot_id}}"
+      state: absent
