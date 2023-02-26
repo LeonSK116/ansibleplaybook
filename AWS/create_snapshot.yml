@@ -9,7 +9,7 @@
   - name: find ec2 id
     amazon.aws.ec2_instance_info:
       filters:
-        "tag:Name": windows2019
+        "tag:Name": "{{ec2_name}}"
     register: ec2_info
   - name: show the ID
     debug:
