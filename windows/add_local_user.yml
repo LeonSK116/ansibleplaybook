@@ -1,0 +1,16 @@
+---
+- name : Add username
+  hosts: all
+  tasks:
+  - name: Add or change user, password and group
+    ansible.windows.win_user:
+      name: "{{user}}"
+      password: "{{pass}}"
+      groups: "{{group}}"
+      password_never_expires: "{{no_expire}}"
+      state: "{{action}}"
+
+
+
+
+
