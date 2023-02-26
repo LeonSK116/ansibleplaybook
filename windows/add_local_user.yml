@@ -9,6 +9,7 @@
       groups: "{{group}}"
       password_never_expires: "{{no_expire}}"
       state: "{{action}}"
+      account_disabled: "{{disable}}"
 
 
 
