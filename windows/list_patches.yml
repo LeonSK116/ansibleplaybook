@@ -5,10 +5,7 @@
   tasks:
   - name: Search-only, return list of found updates (if any), log to C:\ansible_wu.txt
     ansible.windows.win_updates:
-      category_names: 
-      - SecurityUpdates
-      - CriticalUpdates
-      - UpdateRollups
+      category_names: *
       state: searched
       log_path: C:\ansible_wu.txt
   - name: Copy patch list
