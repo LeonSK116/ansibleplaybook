@@ -1,0 +1,11 @@
+---
+- name: Manually install selected patches on windows
+  hosts: all
+  tasks:
+  - name: install patches
+    ansible.windows.win_updates:
+      category_names: "{{patch_category}}"
+      state: installed
+      accept_list: "{{patch_list}}"
+      reboot: yes
+      reboot_timeout: 3600
