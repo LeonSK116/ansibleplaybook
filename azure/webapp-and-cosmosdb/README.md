@@ -30,28 +30,31 @@ MongoDB Basics
 [Basic commands for mongoDB](https://blog.e-zest.com/basic-commands-for-mongodb).
 
 Show DB
-
-```show dbs```
+```
+show dbs
+```
 
 Create new database
 To create a new database execute the following command.
-```use DATABASE_NAME```
+```
+use DATABASE_NAME
+```
 
 
 Know your current selected database
 To know your current working/selected database execute the following command
-
-```db```
+```
+db
+```
 
 Drop database
 To drop the database execute following command, this will drop the selected database
+```db.dropDatabase()
+```
 
-```db.dropDatabase()```
 
-
-### <u>Nodejs</u>
+### Nodejs
 Conenct DB
-
 ```
 var dbURI = "mongodb://127.0.0.1:27017/DB_NAME";
 ```
@@ -62,11 +65,9 @@ mongoose.connect('mongodb://127.0.0.1/DB_NAME')
 
 
 Build and run container
-
 ```
 git clone https://github.com/LeonSK116/nodejs-todo.git
 ```
-
 ```
 podman build -t nodejs-todo .
 ```
@@ -74,15 +75,12 @@ OR
 ```
 podman pull quay.io/redhat_leonsk/nodejs-todo
 ```
-
 ```
 podman run -itd -e MONGO_DBCONNECTION= --name todo-app IMGAE_NAME:latest
 ```
-
 ```
 podman tag localhost/nodejs-todo XXX.azurecr.io/demo/nodejs-todo
 ```
-
 ```
 podman push XXX.azurecr.io/ossdemo/nodejs-to
 ```
