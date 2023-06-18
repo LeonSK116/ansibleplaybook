@@ -1,0 +1,9 @@
+---
+# everything has to have a unique name
+resource_group: www
+webapp_name: vvv
+plan_name: xxx
+location: eastus
+traffic_manager_profile_name: yyy
+traffic_manager_endpoint_name: zzz
+
