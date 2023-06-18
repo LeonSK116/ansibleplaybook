@@ -13,6 +13,7 @@
       src: C:\ansible_wu.txt
       dest: /tmp/win_patches.log
       flat: true
+# community module required
   - name: email to admin
     mail:
       host: smtp-relay.sendinblue.com
