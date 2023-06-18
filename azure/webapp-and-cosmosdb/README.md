@@ -49,7 +49,7 @@ To drop the database execute following command, this will drop the selected data
 ```db.dropDatabase()```
 
 
-### Nodejs
+### <u>Nodejs</u>
 Conenct DB
 
 ```
@@ -69,6 +69,10 @@ git clone https://github.com/LeonSK116/nodejs-todo.git
 
 ```
 podman build -t nodejs-todo .
+```
+OR
+```
+podman pull quay.io/redhat_leonsk/nodejs-todo
 ```
 
 ```
