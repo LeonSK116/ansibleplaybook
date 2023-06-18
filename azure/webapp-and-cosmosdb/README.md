@@ -6,14 +6,17 @@ With some adjustment to make it work on Ansible controller.
 ### Ansible
 To install Azure collection hosted in Galaxy:
 
-```ansible-galaxy collection install azure.azcollection```
+```ansible-galaxy collection install azure.azcollection
+```
 
 Install dependencies required by the collection (adjust path to collection if necessary):
 
-```pip3 install -r ~/.ansible/collections/ansible_collections/azure/azcollection/requirements-azure.txt```
+```pip3 install -r ~/.ansible/collections/ansible_collections/azure/azcollection/requirements-azure.txt
+```
 OR
 
-```pip3.x install -r ~/.ansible/collections/ansible_collections/azure/azcollection/requirements-azure.txt```
+```pip3.x install -r ~/.ansible/collections/ansible_collections/azure/azcollection/requirements-azure.txt
+```
 
 
 ### Mongo Test
@@ -46,19 +49,26 @@ To drop the database execute following command, this will drop the selected data
 ### Nodejs
 Conenct DB
 
-```var dbURI = "mongodb://127.0.0.1:27017/DB_NAME";```
+```var dbURI = "mongodb://127.0.0.1:27017/DB_NAME";
+```
 
-```mongoose.connect('mongodb://127.0.0.1/DB_NAME')```
+```mongoose.connect('mongodb://127.0.0.1/DB_NAME')
+```
 
 
 Build and run container
 
-```git clone https://github.com/LeonSK116/nodejs-todo.git```
+```git clone https://github.com/LeonSK116/nodejs-todo.git
+```
 
-```podman build -t nodejs-todo . ```
+```podman build -t nodejs-todo .
+```
 
-```podman run -itd -e MONGO_DBCONNECTION= --name todo-app IMGAE_NAME:latest```
+```podman run -itd -e MONGO_DBCONNECTION= --name todo-app IMGAE_NAME:latest
+```
 
-```podman tag localhost/nodejs-todo XXX.azurecr.io/demo/nodejs-todo```
+```podman tag localhost/nodejs-todo XXX.azurecr.io/demo/nodejs-todo
+```
 
-```podman push XXX.azurecr.io/ossdemo/nodejs-to```
+```podman push XXX.azurecr.io/ossdemo/nodejs-to
+```
