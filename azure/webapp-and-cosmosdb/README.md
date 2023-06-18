@@ -14,7 +14,7 @@ OR
 ### Mongo Test
 [Azure Cosmos DB Explorer](https://cosmos.azure.com/).
 [Work with data using Azure Cosmos DB Explorer](https://learn.microsoft.com/en-us/azure/cosmos-db/data-explorer).
-**MongoDB Basics 
+MongoDB Basics 
 [Basic commands for mongoDB](https://blog.e-zest.com/basic-commands-for-mongodb).
 Show DB
 `show dbs`
@@ -29,10 +29,12 @@ To drop the database execute following command, this will drop the selected data
 `db.dropDatabase()`
 
 ### Nodejs
-**Conenct DB
+Conenct DB
 `var dbURI = "mongodb://127.0.0.1:27017/DB_NAME";`
 `mongoose.connect('mongodb://127.0.0.1/DB_NAME')`
-**Build and run container
+
+Build and run container
+`git clone https://github.com/LeonSK116/nodejs-todo.git
 `podman build -t nodejs-todo . `
 `podman run -itd -e MONGO_DBCONNECTION= --name todo-app IMGAE_NAME:latest`
 `podman tag localhost/nodejs-todo XXX.azurecr.io/demo/nodejs-todo`
