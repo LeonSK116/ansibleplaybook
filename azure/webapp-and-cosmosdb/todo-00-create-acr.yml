@@ -1,8 +1,10 @@
 - name: Create Azure Container Registry to modernize TODO Application
   hosts: localhost
   connection: local
-  vars_files:
-    - ../vars-myvars.yml
+ # vars:
+ #   vm_name: 
+ #   rnum: 
+ #  resource_group: 
 
   tasks:
 

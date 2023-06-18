@@ -1,9 +1,9 @@
 - name: Create App Service Plan to modernize TODO Application
   hosts: localhost
   connection: local
-  vars_files:
-    - ./vars-myvars.yml
-
+ # vars:
+ #   vm_name: demo85
+ #   resource_group: openenv-vghwm
   tasks:
 
     - name: Create an Azure App Service Plan for TODO Application
