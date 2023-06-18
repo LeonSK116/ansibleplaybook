@@ -75,8 +75,8 @@ podman build -t nodejs-todo .
 podman run -itd -e MONGO_DBCONNECTION= --name todo-app IMGAE_NAME:latest
 ```
 
-```p
-odman tag localhost/nodejs-todo XXX.azurecr.io/demo/nodejs-todo
+```
+podman tag localhost/nodejs-todo XXX.azurecr.io/demo/nodejs-todo
 ```
 
 ```
