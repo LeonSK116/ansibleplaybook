@@ -49,7 +49,8 @@ db
 
 Drop database
 To drop the database execute following command, this will drop the selected database
-```db.dropDatabase()
+```
+db.dropDatabase()
 ```
 
 
