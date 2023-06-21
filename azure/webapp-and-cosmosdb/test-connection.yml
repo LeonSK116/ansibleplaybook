@@ -18,3 +18,7 @@
         retrieve_keys: all
         retrieve_connection_strings: yes
       register: cosmos_output
+
+    - name: output
+      debug:
+        var: acr_output
