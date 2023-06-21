@@ -1,6 +1,6 @@
 ---
 - name: Install IIS
-  hosts: "{{ HOSTS }}"
+  hosts: "{{ HOSTS | default('windows') }}"
 #  vars:
 #    source:
 
