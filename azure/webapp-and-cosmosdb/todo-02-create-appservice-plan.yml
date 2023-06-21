@@ -3,7 +3,7 @@
   connection: local
  # vars:
  #   vm_name: demo85
- #   resource_group: openenv-vghwm
+ #   resource_group: 
   tasks:
 
     - name: Create an Azure App Service Plan for TODO Application
