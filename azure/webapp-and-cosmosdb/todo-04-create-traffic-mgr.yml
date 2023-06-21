@@ -2,7 +2,7 @@
 - hosts: localhost
   connection: local
  # vars:
- #   resource_group_webapp: 
+ #   resource_group: 
  #   webapp_name: 
  #   plan_name: 
  #   location: eastus
@@ -12,13 +12,13 @@
   tasks:
   - name: Get web app facts
     azure_rm_webapp_info:
-      resource_group: "{{ resource_group_webapp }}"
+      resource_group: "{{ resource_group }}"
       name: "{{ webapp_name }}"
     register: webapp
 
   - name: Create Traffic Manager Profile
     azure_rm_trafficmanagerprofile:
-      resource_group: "{{ resource_group_webapp }}"
+      resource_group: "{{ resource_group }}"
       name: "{{ traffic_manager_profile_name }}"
       location: global
       routing_method: performance
@@ -32,7 +32,7 @@
 
   - name: Add endpoint to traffic manager profile, using created web site
     azure_rm_trafficmanagerendpoint:
-      resource_group: "{{ resource_group_webapp }}"
+      resource_group: "{{ resource_group }}"
       profile_name: "{{ traffic_manager_profile_name }}"
       name: "{{ traffic_manager_endpoint_name }}"
       type: azure_endpoints
