@@ -12,4 +12,4 @@
         is_linux: true
         number_of_workers: 1
         resource_group: "{{ resource_group }}"
-        sku: S1
+        sku: S2
