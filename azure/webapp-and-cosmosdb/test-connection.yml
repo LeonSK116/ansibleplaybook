@@ -1,13 +1,7 @@
 - name: Create Azure Webapp for TODO Application
   hosts: localhost
   connection: local
-  collections:
-    - azure.azcollection
-  vars:
-    resource_group: openenv-vghwm
-    vm_name: demo85
-    rnum: 85
-
+  
   tasks:
 
     - name: Obtain Azure Container Registry Facts
