@@ -1,0 +1,22 @@
+---
+- name: Push Workflow
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  collections:
+    - ansible.controller
+  vars_files:
+    - workflow.yaml
+  tasks:
+    - name: Push workflows to controller
+      workflow_job_template:
+        name: "{{ __workflow_loop_item.name }}"
+        schema: "{{ __workflow_loop_item.related.workflow_nodes }}"
+        controller_host: https://localhost
+        controller_username: admin
+        controller_password: password
+        validate_certs: false
+      loop: "{{ workflow_job_templates }}"
+      loop_control:
+        loop_var: __workflow_loop_item
+...

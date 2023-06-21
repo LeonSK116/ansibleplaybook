@@ -1,0 +1,318 @@
+---
+assets:
+    workflow_job_templates:
+    -   allow_simultaneous: false
+        ask_inventory_on_launch: false
+        ask_limit_on_launch: false
+        ask_scm_branch_on_launch: false
+        ask_variables_on_launch: false
+        description: ''
+        extra_vars: '---'
+        inventory: null
+        limit: null
+        name: SATELLITE / Patching Workflow
+        natural_key:
+            name: SATELLITE / Patching Workflow
+            organization: null
+            type: workflow_job_template
+        organization: null
+        related:
+            labels: []
+            notification_templates_approvals: []
+            notification_templates_error: []
+            notification_templates_started: []
+            notification_templates_success: []
+            schedules: []
+            survey_spec: {}
+            workflow_nodes:
+            -   all_parents_must_converge: false
+                diff_mode: null
+                extra_data: {}
+                identifier: ddea00ee-ff88-4ac9-89be-b90de2410495
+                inventory: null
+                job_tags: null
+                job_type: null
+                limit: null
+                natural_key:
+                    identifier: ddea00ee-ff88-4ac9-89be-b90de2410495
+                    type: workflow_job_template_node
+                    workflow_job_template:
+                        name: SATELLITE / Patching Workflow
+                        organization: null
+                        type: workflow_job_template
+                related:
+                    always_nodes: []
+                    credentials: []
+                    failure_nodes: []
+                    success_nodes:
+                    -   identifier: 0557c5b3-e570-40ec-835a-7aa790b95648
+                        type: workflow_job_template_node
+                        workflow_job_template:
+                            name: SATELLITE / Patching
+                                Workflow
+                            organization: null
+                            type: workflow_job_template
+                scm_branch: null
+                skip_tags: null
+                unified_job_template:
+                    inventory:
+                        name: RHEL7 Development
+                        organization:
+                            name: Default
+                            type: organization
+                        type: inventory
+                    name: EC2 Dynamic Source - RHEL7
+                        Development
+                    type: inventory_source
+                verbosity: null
+                workflow_job_template:
+                    name: SATELLITE / Patching Workflow
+                    organization: null
+                    type: workflow_job_template
+            -   all_parents_must_converge: false
+                diff_mode: null
+                extra_data:
+                    content_view: RHEL7
+                identifier: 4f85fa19-92a8-4e1b-b182-cf83a8b8e1cb
+                inventory: null
+                job_tags: null
+                job_type: null
+                limit: null
+                natural_key:
+                    identifier: 4f85fa19-92a8-4e1b-b182-cf83a8b8e1cb
+                    type: workflow_job_template_node
+                    workflow_job_template:
+                        name: SATELLITE / Patching Workflow
+                        organization: null
+                        type: workflow_job_template
+                related:
+                    always_nodes: []
+                    credentials: []
+                    failure_nodes: []
+                    success_nodes:
+                    -   identifier: 426d8148-6379-4d57-8bbe-c3758a84c31c
+                        type: workflow_job_template_node
+                        workflow_job_template:
+                            name: SATELLITE / Patching
+                                Workflow
+                            organization: null
+                            type: workflow_job_template
+                scm_branch: null
+                skip_tags: null
+                unified_job_template:
+                    name: SATELLITE / RHEL - Publish
+                        Content View
+                    organization:
+                        name: Default
+                        type: organization
+                    type: job_template
+                verbosity: null
+                workflow_job_template:
+                    name: SATELLITE / Patching Workflow
+                    organization: null
+                    type: workflow_job_template
+            -   all_parents_must_converge: false
+                diff_mode: null
+                extra_data: {}
+                identifier: 0557c5b3-e570-40ec-835a-7aa790b95648
+                inventory: null
+                job_tags: null
+                job_type: null
+                limit: null
+                natural_key:
+                    identifier: 0557c5b3-e570-40ec-835a-7aa790b95648
+                    type: workflow_job_template_node
+                    workflow_job_template:
+                        name: SATELLITE / Patching Workflow
+                        organization: null
+                        type: workflow_job_template
+                related:
+                    always_nodes: []
+                    credentials: []
+                    failure_nodes: []
+                    success_nodes:
+                    -   identifier: 2997630e-fea2-4984-af89-920fa062683f
+                        type: workflow_job_template_node
+                        workflow_job_template:
+                            name: SATELLITE / Patching
+                                Workflow
+                            organization: null
+                            type: workflow_job_template
+                scm_branch: null
+                skip_tags: null
+                unified_job_template:
+                    name: SERVER / RHEL7 - Fact Scan
+                    organization:
+                        name: Default
+                        type: organization
+                    type: job_template
+                verbosity: null
+                workflow_job_template:
+                    name: SATELLITE / Patching Workflow
+                    organization: null
+                    type: workflow_job_template
+            -   all_parents_must_converge: false
+                diff_mode: null
+                extra_data:
+                    content_view: RHEL7
+                    current_lifecycle_environment: RHEL7_Dev
+                    lifecycle_environment: RHEL7_QA
+                identifier: 426d8148-6379-4d57-8bbe-c3758a84c31c
+                inventory: null
+                job_tags: null
+                job_type: null
+                limit: null
+                natural_key:
+                    identifier: 426d8148-6379-4d57-8bbe-c3758a84c31c
+                    type: workflow_job_template_node
+                    workflow_job_template:
+                        name: SATELLITE / Patching Workflow
+                        organization: null
+                        type: workflow_job_template
+                related:
+                    always_nodes: []
+                    credentials: []
+                    failure_nodes: []
+                    success_nodes:
+                    -   identifier: 2997630e-fea2-4984-af89-920fa062683f
+                        type: workflow_job_template_node
+                        workflow_job_template:
+                            name: SATELLITE / Patching
+                                Workflow
+                            organization: null
+                            type: workflow_job_template
+                scm_branch: null
+                skip_tags: null
+                unified_job_template:
+                    name: SATELLITE / RHEL - Promote
+                        Content View
+                    organization:
+                        name: Default
+                        type: organization
+                    type: job_template
+                verbosity: null
+                workflow_job_template:
+                    name: SATELLITE / Patching Workflow
+                    organization: null
+                    type: workflow_job_template
+            -   all_parents_must_converge: true
+                diff_mode: null
+                extra_data: {}
+                identifier: 2997630e-fea2-4984-af89-920fa062683f
+                inventory: null
+                job_tags: null
+                job_type: null
+                limit: null
+                natural_key:
+                    identifier: 2997630e-fea2-4984-af89-920fa062683f
+                    type: workflow_job_template_node
+                    workflow_job_template:
+                        name: SATELLITE / Patching Workflow
+                        organization: null
+                        type: workflow_job_template
+                related:
+                    always_nodes: []
+                    credentials: []
+                    failure_nodes: []
+                    success_nodes:
+                    -   identifier: 6edf4524-bab1-4e96-b835-350ce0b25ca6
+                        type: workflow_job_template_node
+                        workflow_job_template:
+                            name: SATELLITE / Patching
+                                Workflow
+                            organization: null
+                            type: workflow_job_template
+                scm_branch: null
+                skip_tags: null
+                unified_job_template:
+                    name: CONVERT2RHEL / 01 - Take node
+                        snapshot RHEL7
+                    organization:
+                        name: Default
+                        type: organization
+                    type: job_template
+                verbosity: null
+                workflow_job_template:
+                    name: SATELLITE / Patching Workflow
+                    organization: null
+                    type: workflow_job_template
+            -   all_parents_must_converge: false
+                diff_mode: null
+                extra_data:
+                    check_only: 'no'
+                    lifecycle_stage: RHEL7_Dev
+                identifier: da2f7748-489e-4f79-a34b-783aa5cdf3f5
+                inventory: null
+                job_tags: null
+                job_type: null
+                limit: null
+                natural_key:
+                    identifier: da2f7748-489e-4f79-a34b-783aa5cdf3f5
+                    type: workflow_job_template_node
+                    workflow_job_template:
+                        name: SATELLITE / Patching Workflow
+                        organization: null
+                        type: workflow_job_template
+                related:
+                    always_nodes: []
+                    credentials: []
+                    failure_nodes: []
+                    success_nodes: []
+                scm_branch: null
+                skip_tags: null
+                unified_job_template:
+                    name: SERVER / RHEL7 - Patch
+                    organization:
+                        name: Default
+                        type: organization
+                    type: job_template
+                verbosity: null
+                workflow_job_template:
+                    name: SATELLITE / Patching Workflow
+                    organization: null
+                    type: workflow_job_template
+            -   all_parents_must_converge: false
+                diff_mode: null
+                extra_data: {}
+                identifier: 6edf4524-bab1-4e96-b835-350ce0b25ca6
+                inventory: null
+                job_tags: null
+                job_type: null
+                limit: null
+                natural_key:
+                    identifier: 6edf4524-bab1-4e96-b835-350ce0b25ca6
+                    type: workflow_job_template_node
+                    workflow_job_template:
+                        name: SATELLITE / Patching Workflow
+                        organization: null
+                        type: workflow_job_template
+                related:
+                    always_nodes: []
+                    create_approval_template:
+                        description: ''
+                        name: Commence Patching
+                        timeout: 300
+                    credentials: []
+                    failure_nodes: []
+                    success_nodes:
+                    -   identifier: da2f7748-489e-4f79-a34b-783aa5cdf3f5
+                        type: workflow_job_template_node
+                        workflow_job_template:
+                            name: SATELLITE / Patching
+                                Workflow
+                            organization: null
+                            type: workflow_job_template
+                scm_branch: null
+                skip_tags: null
+                verbosity: null
+                workflow_job_template:
+                    name: SATELLITE / Patching Workflow
+                    organization: null
+                    type: workflow_job_template
+        scm_branch: ''
+        survey_enabled: false
+        webhook_credential: null
+        webhook_service: ''
+changed: false
+failed: false
+...
