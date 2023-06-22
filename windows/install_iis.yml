@@ -24,7 +24,7 @@
         dest: "{{ source }}"
       delegate_to: localhost
 
-    - name: Extract foo.tgz into /var/lib/foo
+    - name: Extract zip
       ansible.builtin.unarchive:
         src: "{{ source }}"
         dest: /tmp
