@@ -1,6 +1,7 @@
 ---
 - name: Install IIS
   hosts: "{{ HOSTS | default('windows') }}"
+  gather_facts: no
   vars:
 #    ftp_user: 
 #    ftp_pass:
