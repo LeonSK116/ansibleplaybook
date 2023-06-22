@@ -8,6 +8,11 @@
     s_folder: /tmp/static-website-example-master/
 
   tasks:
+    - name: Wait for 10 min
+      ansible.builtin.wait_for:
+        timeout: 600
+      delegate_to: localhost
+
     - name: Install IIS
       win_feature:
         name: Web-Server
