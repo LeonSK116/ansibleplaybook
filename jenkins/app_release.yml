@@ -1,0 +1,57 @@
+---
+- name: Create new ACME Corp release
+  hosts: controller.acme.example.com
+  gather_facts: false
+
+  module_defaults:
+    ansible.builtin.uri:
+      url_username: "{{ student_user }}"
+      url_password: "{{ student_password }}"
+      body_format: json
+      force_basic_auth: true
+      validate_certs: false
+
+  tasks:
+    - name: Check if Gitea student-token exists - {{ student_user }}
+      ansible.builtin.uri:
+        url: "{{ repo_url }}/api/v1/users/{{ student_user }}/tokens"
+        method: GET
+        status_code: 200
+      register: __current_user_token
+
+    - name: Remove existing student-token - {{ student_user }}
+      ansible.builtin.uri:
+        url: "{{ repo_url }}/api/v1/users/{{ student_user }}/tokens/student-token"
+        method: DELETE
+        body:
+          name: student-token
+        status_code: [204]
+      register: __user_token
+      when: (__current_user_token.json | length > 0) and (__current_user_token.json[0]["name"] == "student-token")
+
+    - name: Create Gitea token - {{ student_user }}
+      ansible.builtin.uri:
+        url: "{{ repo_url }}/api/v1/users/{{ student_user }}/tokens"
+        method: POST
+        body:
+          name: student-token
+        status_code: [201]
+      register: __user_token
+
+    - name: Create new ACME release
+      ansible.builtin.uri:
+        url: "{{ repo_url }}/api/v1/repos/{{ student_user }}/acme_corp/releases"
+        method: POST
+        headers:
+          Authorization: token "{{ __user_token.json["sha1"] }}"
+        body:
+          '{"target_commitish": "main",
+          "name": "ACME Corp Patch Release {{ tag_name }}",
+          "draft": false,
+          "prerelease": false,
+          "tag_name": "{{ tag_name }}"}'
+        status_code: 201
+      register: __result
+      until: __result.status == 201
+      retries: 3
+      delay: 3

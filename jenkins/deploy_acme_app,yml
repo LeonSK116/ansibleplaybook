@@ -1,0 +1,25 @@
+---
+- name: Deploy ACME App
+  hosts: webservers
+  gather_facts: false
+
+  tasks:
+    - name: Extract download
+      ansible.builtin.unarchive:
+        src: "https://gitea:8443/{{ student_user }}/acme_corp/archive/{{ tag_name }}.tar.gz"
+        remote_src: true
+        owner: "{{ student_user }}"
+        group: "{{ student_user }}"
+        dest: /usr/local/
+        validate_certs: false
+
+    - name: Create database migrations
+      community.general.django_manage:
+        command: migrate
+        project_path: /usr/local/acme_corp/app/lets_quiz
+        virtualenv: "{{ acme_venv }}"
+
+    - name: Run the application
+      ansible.builtin.shell:
+        cmd: "nohup {{ acme_venv }}/bin/python3 manage.py runserver 0.0.0.0:8000 &"
+        chdir: /usr/local/acme_corp/app/lets_quiz

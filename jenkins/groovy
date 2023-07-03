@@ -1,0 +1,79 @@
+#!/usr/bin/env groovy
+
+pipeline {
+    agent any
+    stages {
+        stage('SCM Get Code') {
+            steps {
+                checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://gitea:8443/student/acme_corp.git']]])
+            }
+        }
+
+        stage('Installing packages') {
+            steps {
+                script {
+                    sh '/usr/bin/python3 -m pip install -r playbooks/files/requirements_test.txt'
+                }
+            }
+        }
+        
+        stage('Static Code Checking') {
+            steps {
+                script {
+                    sh 'find . -name \\*.py | xargs /usr/bin/python3 -m pylint --load-plugins=pylint_django -f parseable | tee pylint.log'
+                    recordIssues(
+                        tool: pyLint(pattern: 'pylint.log'),
+                        failTotalHigh: 10,
+                    )
+                }
+            }
+        }
+        stage('Build and Tag') {
+            steps {
+                withCredentials([gitUsernamePassword(credentialsId: 'gitea_repo', gitToolName: 'git')]) {
+                    sh """
+                        git reset --hard HEAD
+                        git checkout main
+                        git pull origin main --force --rebase
+                        git fetch --tags --all --prune
+                        git config --replace-all user.name ${env.GIT_USERNAME}
+                        git config --replace-all user.email ${env.GIT_USERNAME}
+                        cd app && /usr/bin/python3 -m bumpversion --config-file setup.cfg --allow-dirty --verbose minor --list > build_vars.env
+
+                    """
+                    script {
+                        def build_vars = readProperties file: 'app/build_vars.env'
+                        env.newPkgVersion = build_vars.new_version
+                        env.pkgVersion = build_vars.current_version
+                        echo " CURRENT - ${pkgVersion}"
+                        echo " NEW  - ${newPkgVersion}"
+                    }
+                    sh """
+                        git tag --force v${newPkgVersion}
+                        git add .
+                        git commit -m"Bump version from  v${pkgVersion} to v${newPkgVersion}"
+                        git push --force origin main v${newPkgVersion}
+                    """
+                }
+            }
+        }
+        
+        stage('Controller - DevOps') {
+            steps {
+                ansibleTower(
+                    towerServer: 'ACME Corp controller',
+                    templateType: 'workflow',
+                    jobTemplate: 'DevOps Workflow',
+                    importTowerLogs: true,
+                    removeColor: false,
+                    verbose: true,
+                        extraVars: '''---
+                        pkg_version: $pkgVersion
+                        tag_name: $newPkgVersion
+                        '''
+                )
+            }
+        }
+    }
+
+}

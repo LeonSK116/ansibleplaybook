@@ -1,0 +1,23 @@
+---
+- name: Restart the ACMECorp DevOps workflow
+  hosts: controller.acme.example.com
+
+  tasks:
+  - name: Create temp repo file
+    ansible.builtin.template:
+      src: restart.tmp.j2
+      dest: "/home/{{ repo_user }}/acme_corp/restart.tmp"
+      owner: "{{ repo_user }}"
+      group: "{{ repo_user }}"
+      mode: '0644'
+
+  - name: Commit and push file to repo
+    ansible.builtin.command:
+      cmd: "{{ item }}"
+      chdir: "/home/{{ repo_user }}/acme_corp"
+    become: true
+    become_user: "{{ repo_user }}"
+    loop:
+      - "git add ."
+      - "git commit -m'Restart the workflow'"
+      - "git push -u origin main --force"
