@@ -1,10 +1,10 @@
 ---
 - name: find ec2 id and take a snapshot of it with tag demo
   hosts: localhost
-#  environment:
+  environment:
 #    AWS_ACCESS_KEY: "{{a_key}}"
 #    AWS_SECRET_KEY: "{{s_key}}"
-#    AWS_REGION: "{{region_az}}"
+    AWS_REGION: "{{region_az}}"
   tasks:
   - name: find ec2 id
     amazon.aws.ec2_instance_info:
