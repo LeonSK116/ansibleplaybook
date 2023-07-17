@@ -2,8 +2,8 @@
 - name: find ec2 id and take a snapshot of it with tag demo
   hosts: localhost
   environment:
-    AWS_ACCESS_KEY: "{{a_key}}"
-    AWS_SECRET_KEY: "{{s_key}}"
+    AWS_ACCESS_KEY: "{{a_key | default(omit) }}"
+    AWS_SECRET_KEY: "{{s_key | default(omit) }}"
     AWS_REGION: "{{region_az}}"
   tasks:
   - name: find ec2 id
