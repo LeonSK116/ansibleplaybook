@@ -3,4 +3,4 @@ connection: local
 tasks:
   - name: Get facts for one resource group
     azure_rm_resourcegroup_info:
-      name: "{{ myResourceGroup }}
+      name: "{{ myResourceGroup }}"
