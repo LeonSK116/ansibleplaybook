@@ -1,3 +1,4 @@
+---
 - name: Get Azure Resources 
   hosts: localhost
   connection: local
