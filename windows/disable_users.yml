@@ -1,0 +1,30 @@
+---
+- name: Find rogue users and disable them
+  hosts: all  # Replace with the actual host or group of Windows hosts
+  gather_facts: yes
+
+  tasks:
+    - name: Get a list of all users
+      win_shell: |
+        Get-LocalUser | Select-Object -ExpandProperty Name
+      register: existing_users
+
+    - name: Display user information
+      debug:
+        var: existing_users.stdout_lines
+
+    - name: Define the list of users to keep
+      set_fact:
+        users_to_keep:
+          - Administrator
+          - Guest
+          - DefaultAccount
+          - ansible
+          # Add your list of users here
+
+    - name: Remove users not on the keep list
+      win_user:
+        name: "{{ item }}"
+        account_disabled: true
+      when: item not in users_to_keep
+      loop: "{{ existing_users.stdout_lines  }}"
