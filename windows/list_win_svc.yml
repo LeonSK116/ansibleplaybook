@@ -1,0 +1,9 @@
+---
+- name: List All Windows Services
+  hosts: all  # Replace with the actual host or group of Windows hosts
+  gather_facts: yes
+
+  tasks:
+    - name: Get a list of all Windows services
+      ansible.windows.win_service_info:
+      register: service_info
