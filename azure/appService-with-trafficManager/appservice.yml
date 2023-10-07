@@ -11,8 +11,6 @@
           is_linux: true
           sku: S1
           number_of_workers: 1
-        app_settings:
-          testkey: "{{ test_value }}"
         frameworks:
           - name: "java"
             version: "8"
