@@ -1,0 +1,17 @@
+---
+- name: List AWS AMIs with AMI IDs
+  hosts: localhost
+  gather_facts: no
+# vars:
+#   ami_di: 
+#   aws_region:   
+  tasks:
+    - name: Gather AWS AMI facts
+      amazon.aws.ec2_ami_info:
+        image_ids: "{{ ami_id }}"
+        region: "{{ aws_region }}"  
+      register: ami_facts
+
+    - name: Display AMIs with their IDs
+      debug:
+        var: ami_facts.ami_ids
