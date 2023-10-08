@@ -14,4 +14,4 @@
 
     - name: Display AMIs with their IDs
       debug:
-        var: ami_facts.ami_ids
+        var: ami_facts
