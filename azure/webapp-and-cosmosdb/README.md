@@ -83,7 +83,7 @@ podman run -itd -e MONGO_DBCONNECTION= --name todo-app IMGAE_NAME:latest
 podman tag localhost/nodejs-todo XXX.azurecr.io/demo/nodejs-todo
 ```
 ```
-podman push XXX.azurecr.io/ossdemo/nodejs-todo
+podman push XXX.azurecr.io/demo/nodejs-todo
 ```
 ```
 skopeo inspect docker://XXX.azurecr.io/demo/nodejs-todo:latest
