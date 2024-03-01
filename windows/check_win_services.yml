@@ -1,0 +1,18 @@
+---
+- name: Check Windows Services
+  hosts: win_iis
+  gather_facts: false
+
+  tasks:
+  - name: Check Services
+    ansible.windows.win_service_info:
+      name: "{{ item }}"
+     # state: started  # Can change to 'stopped' if needed
+    register: service_results
+    loop:
+    - W3SVC  # IIS service name
+
+  - name: Report Service Status
+    debug:
+      #msg: "{{ item.item }} is {{ item.state }}"
+      msg: "{{ service_results.results[0].item }} is {{ service_results.results[0].services[0].state }}"

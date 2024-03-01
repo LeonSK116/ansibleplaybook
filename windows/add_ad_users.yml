@@ -1,0 +1,25 @@
+---
+- name: Add user to Active Directory domain
+  hosts: win_ad  # Target your domain controller
+  gather_facts: false
+  #vars:
+    #username: scott
+    #firstname: Scott
+    #lastname: Pilgram
+    #password: 
+    #dn_path: ou=Managers,ou=Marketing,dc=mydomain,dc=local
+    #memgroups:
+    #- "Domain Users"
+    #- "Domain Admins"
+    
+  tasks:
+  - name: Create a new AD user
+    microsoft.ad.user:
+      name: "{{ username }}"
+      firstname: "{{ firstname }}"
+      surname: "{{ lastname }}"
+      password: "{{ password }}"
+      path: "{{dn_path}}"
+      state: present
+      groups:
+        add: "{{ memgroups }}"

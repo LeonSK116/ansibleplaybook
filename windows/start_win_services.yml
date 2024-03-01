@@ -1,0 +1,17 @@
+---
+- name: Start Windows Services
+  hosts: win_iis
+  gather_facts: false
+
+  tasks:
+  - name: Start Services
+    win_service:
+      name: "{{ item }}"
+      state: started  # Can change to 'stopped' if needed
+    register: service_results
+    loop:
+    - W3SVC  # IIS service name
+
+  - name: Output
+    debug:
+      msg: "{{ service_results.results[0].name}} is {{ service_results.results[0].state }}"

@@ -1,0 +1,19 @@
+---
+- name: Modify grops for AD user
+  hosts: win_ad  # Target your domain controller
+  gather_facts: false
+  #vars:
+    #username: 
+    #dn_path: ou=Manager,ou=Sales,dc=mydomain,dc=local
+    #memgroups:
+    #- "Domain Users"
+    #- "Domain Admins"
+
+  tasks:
+  - name: Set Group for user
+    microsoft.ad.user:
+      name: "{{ username }}"
+      path: "{{ dn_path }}"
+      groups:
+        set: "{{ memgroups }}"
+      state: present
