@@ -22,4 +22,4 @@
       path: "{{dn_path}}"
       state: present
       groups:
-        add: "{{ memgroups }}"
+        add: "{{ memgroups | default('Domain Users') }}"

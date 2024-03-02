@@ -15,5 +15,5 @@
       name: "{{ username }}"
       path: "{{ dn_path }}"
       groups:
-        set: "{{ memgroups }}"
+        set: "{{ memgroups | default('Domain Users') }}"
       state: present
