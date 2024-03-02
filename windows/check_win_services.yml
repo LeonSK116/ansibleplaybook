@@ -1,10 +1,10 @@
 ---
 - name: Check and Restart Windows Services
-  hosts: win_iis
+  hosts: all
   gather_facts: false
-  vars:
-    services_to_check:
-    - W3SVC # IIS service name
+  #vars:
+    #services_to_check:
+    #- W3SVC # IIS service name
 
   tasks:
   - name: Check Services
