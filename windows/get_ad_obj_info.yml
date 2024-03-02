@@ -1,0 +1,20 @@
+---
+- name: Find Distinguished Name (DN) using microsoft.ad collection
+  hosts: all
+  gather_facts: false
+
+  #vars:
+    #username: "CN=Ada Wong,CN=Users,DC=mydomain,DC=local"
+    #username: "CN=chris,OU=Security,OU=IT,DC=mydomain,DC=local"
+
+  tasks:
+
+    - name: Get Distinguished Name of user
+      microsoft.ad.object_info:
+        identity: "{{ username }}"
+        properties: "*"
+      register: user_info
+
+    - name: Print the Distinguished Name
+      debug:
+        var: user_info
