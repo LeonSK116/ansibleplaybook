@@ -1,6 +1,6 @@
 ---
 - name: Modify grops for AD user
-  hosts: win_ad  # Target your domain controller
+  hosts: all  # Target your domain controller
   gather_facts: false
   #vars:
     #username: 

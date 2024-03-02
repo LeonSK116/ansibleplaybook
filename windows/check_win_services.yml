@@ -1,7 +1,10 @@
 ---
-- name: Check Windows Services
+- name: Check and Restart Windows Services
   hosts: win_iis
   gather_facts: false
+  vars:
+    services_to_check:
+    - W3SVC # IIS service name
 
   tasks:
   - name: Check Services
@@ -9,10 +12,13 @@
       name: "{{ item }}"
      # state: started  # Can change to 'stopped' if needed
     register: service_results
-    loop:
-    - W3SVC  # IIS service name
+    loop: "{{ services_to_check }}"
+
+  - name: Set variable
+    set_fact:
+      output: "{{ service_results.results[0].services[0] }}"
 
   - name: Report Service Status
     debug:
-      #msg: "{{ item.item }} is {{ item.state }}"
-      msg: "{{ service_results.results[0].item }} is {{ service_results.results[0].services[0].state }}"
+      msg: "{{ output.name }} , {{ output.display_name}} is {{ output.state }}"
+

@@ -1,6 +1,6 @@
 ---
 - name: Check Ports
-  hosts: win_iis
+  hosts: all
   gather_facts:  false
 
   tasks:
