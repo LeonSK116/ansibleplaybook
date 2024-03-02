@@ -1,18 +1,18 @@
 ---
-- name: Modify grops for AD user
-  hosts: all  # Target your domain controller
+- name: Get AD Object Info
+  hosts: all # Target your domain controller
   gather_facts: false
   #vars:
-    #username: 
-    #dn_path: ou=Managers,ou=Sales,DC=mydomain,DC=local
- 
+    #dn_path: cn=pam,ou=Server,ou=IT,DC=mydomain,DC=local
+
   tasks:
   - name: Get all properties for the user using its DistinguishedName
     microsoft.ad.object_info:
-      identity: "cn={{ username }},{{ dn_path }}"
+      identity: "{{ dn_path }}"
       properties: '*'
     register: output
 
-  - name: Show current membership
+  - name: Show output
     debug:
-      msg: " {{ username }} is curreently a member of {{ output.objects[0].memberOf | default('Domain Users')  }}"
+      var: output
+
