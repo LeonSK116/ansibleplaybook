@@ -7,10 +7,9 @@
     #- W3SVC # IIS service name
 
   tasks:
-  - name: Check Services
+  - name: Check Services Status
     ansible.windows.win_service_info:
       name: "{{ item }}"
-     # state: started  # Can change to 'stopped' if needed
     register: service_results
     loop: "{{ services_to_check }}"
 
@@ -18,7 +17,12 @@
     set_fact:
       output: "{{ service_results.results[0].services[0] }}"
 
-  - name: Report Service Status
+  - name: Services status
+    fail:
+      msg: "{{ output.name }} , {{ output.display_name}} is {{ output.state }}"
+    when: output.state != 'started'
+ 
+  - name: Services status
     debug:
       msg: "{{ output.name }} , {{ output.display_name}} is {{ output.state }}"
-
+    when: output.state == 'started'

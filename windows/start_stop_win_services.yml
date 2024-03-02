@@ -1,0 +1,25 @@
+---
+- name: Start or Stop Windows Services
+  hosts: all
+  gather_facts: false
+  #vars:
+    #-services_to_manage:
+    #- W3SVC # IIS service name
+    #- WpnService  # Windows Push Notifications System Service
+    #service_status: started
+
+  tasks:
+  - name: Start Services
+    ansible.windows.win_service:
+      name: "{{ item }}"
+      state: "{{ service_status }}"
+    register: service_results
+    loop: "{{ services_to_manage }}"
+
+  - name: Report Service Status
+    debug:
+     msg: "======== {{ item.name }} , {{ item.display_name}} is {{ item.state }} ========"
+    loop: "{{ service_results.results }}"
+    loop_control:
+      label: "{{ item.name }}"
+

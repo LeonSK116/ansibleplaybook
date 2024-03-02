@@ -1,0 +1,16 @@
+---
+- name: Check Windows Services
+  hosts: all
+  gather_facts: false
+
+  tasks:
+  - name: Gather information about Windows services
+    ansible.windows.win_service_info:
+    register: windows_service_info
+
+  - name: Print the list of services and their states
+    debug:
+      msg: "{{ item.name }} - {{ item.state }}"
+    loop: "{{ windows_service_info.services }}"
+    loop_control:
+      label: "{{ item.name }}"
