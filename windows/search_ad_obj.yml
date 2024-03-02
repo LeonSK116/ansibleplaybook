@@ -1,13 +1,17 @@
+
 ---
 - name: Find Distinguished Name (DN) using microsoft.ad collection
-  hosts: all
+  hosts: win_ad
   gather_facts: false
 
-  tasks:
+  #vars:
+   #objclass are group ,organizationalUnit ,computer, user 
 
+  tasks:
+  
   - name: Get the SID for all user accounts as a filter
     microsoft.ad.object_info:
-      filter: ObjectClass -eq 'user' -and objectCategory -eq 'Person'
+      filter: ObjectClass -eq "{{ objclass }}"
       properties:
       - objectSid
     register: search_result
