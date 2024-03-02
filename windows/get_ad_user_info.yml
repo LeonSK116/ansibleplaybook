@@ -15,4 +15,4 @@
 
   - name: Show current membership
     debug:
-      msg: " {{ username }} is curreently a member of {{output.objects[0].memberOf}}"
+      msg: " {{ username }} is curreently a member of {{ output.objects[0].memberOf | default('Domain Users')  }}"
