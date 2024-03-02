@@ -14,7 +14,7 @@
       status_code: 200     # Expect HTTP 200 OK
     register: webpage_result 
   
-  - name: Report Failure (if needed)
+  - name: Report Success
     debug:
       msg: "Web page {{ site_url }} is accessible"
     when: webpage_result.status == 200
