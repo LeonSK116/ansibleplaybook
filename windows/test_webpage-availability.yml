@@ -1,0 +1,25 @@
+---
+- name: Remotely test Web Page Availability
+  hosts: localhost
+  gather_facts: false
+
+  #vars:
+    #site_url: 
+  
+  tasks:  
+  - name: Verify Web Server is Responding 
+    uri:
+      url: "{{ site_url }}"
+      return_content: yes  # Fetch page content if needed
+      status_code: 200     # Expect HTTP 200 OK
+    register: webpage_result 
+  
+  - name: Report Failure (if needed)
+    debug:
+      msg: "Web page {{ site_url }} is accessible"
+    when: webpage_result.status == 200
+
+  - name: Report Failure (if needed)
+    fail:
+      msg: "Web page {{ site_url }} is not accessible"
+    when: webpage_result.status != 200
