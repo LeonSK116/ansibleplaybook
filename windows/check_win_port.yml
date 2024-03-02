@@ -2,11 +2,11 @@
 - name: Check Ports
   hosts: all
   gather_facts:  false
-  #var:
+  #vars:
   #  port_num: 80
 
   tasks:
-  - name: Check if port 80 (HTTP) is open
+  - name: "Check if port {{ port_num }} is open"
     ansible.windows.win_wait_for:
       port: "{{ port_num }}"
       timeout: 30
