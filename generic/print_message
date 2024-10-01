@@ -1,0 +1,9 @@
+---
+- name: Print out variable
+  hosts: localhost
+  gather_facts: false
+
+  tasks:
+    - name: Print the variable
+      debug:
+        msg: "{{ mypassword }}"
